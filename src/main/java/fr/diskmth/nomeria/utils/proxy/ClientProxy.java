@@ -1,5 +1,6 @@
 package fr.diskmth.nomeria.utils.proxy;
 
+import fr.diskmth.nomeria.init.RendersInit;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -34,6 +35,7 @@ public class ClientProxy extends CommonProxy
     public void init()
     {
         super.init();
+        RendersInit.registerRenders();
     }
 
     @Override

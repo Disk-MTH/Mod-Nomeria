@@ -7,7 +7,6 @@ import fr.diskmth.nomeria.init.ItemsInit;
 import fr.diskmth.nomeria.init.RecipesInit;
 import fr.diskmth.nomeria.init.ToolMaterialsInit;
 import fr.diskmth.nomeria.utils.interfaces.IHasModel;
-import fr.diskmth.nomeria.world.generation.WorldGenOres;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -15,7 +14,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @EventBusSubscriber
 public class RegistryHandler
@@ -58,7 +56,6 @@ public class RegistryHandler
         ToolMaterialsInit.registerToolMaterials();
         CreativeTabsInit.registerCreativetabs();
         EntityInit.registerEntity();
-        GameRegistry.registerWorldGenerator(new WorldGenOres(), 0);
     }
 
     public static void initRegistries()

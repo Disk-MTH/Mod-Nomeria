@@ -2,7 +2,6 @@ package fr.diskmth.nomeria.init;
 
 import java.util.Random;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -19,26 +18,24 @@ public class RecipesInit
     private static ItemStack randomOreSmelt()
     {
         Random random = new Random();
-        int luck = random.nextInt(99) + 1;
+        int luck = random.nextInt(99);
         int quantity = random.nextInt(1) + 1;
 
-        if(luck <= 55)
+        if(luck <= 53)
         {
             return new ItemStack(ItemsInit.TOPAZE, quantity);
         }
-        if(luck > 55 && luck <= 90)
+        else if(luck > 53 && luck <= 88)
         {
             return new ItemStack(ItemsInit.AZURITE, quantity);
         }
-        if(luck > 90 && luck <= 99)
+        else if(luck > 88 && luck <= 97)
         {
             return new ItemStack(ItemsInit.MERCURE, quantity);
         }
-        if(luck == 100)
+        else
         {
             return new ItemStack(ItemsInit.MENORITE_FRAGMENT, quantity);
         }
-
-        return new ItemStack(Items.AIR);
     }
 }

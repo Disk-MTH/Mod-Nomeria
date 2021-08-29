@@ -9,7 +9,6 @@ import fr.diskmth.nomeria.utils.interfaces.IHasModel;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -65,26 +64,24 @@ public class OreBlock extends BlockOre implements IHasModel
     {
         if(this == BlocksInit.RANDOM_ORE)
         {
-            int luck = random.nextInt(99) + 1;
+            int luck = random.nextInt(99);
 
-            if(luck <= 55)
+            if(luck <= 53)
             {
                 return ItemsInit.TOPAZE;
             }
-            if(luck > 55 && luck <= 90)
+            else if(luck > 53 && luck <= 88)
             {
                 return ItemsInit.AZURITE;
             }
-            if(luck > 90 && luck <= 99)
+            else if(luck > 88 && luck <= 97)
             {
                 return ItemsInit.MERCURE;
             }
-            if(luck == 100)
+            else
             {
                 return ItemsInit.MENORITE_FRAGMENT;
             }
-
-            return Items.AIR;
         }
 
         else
