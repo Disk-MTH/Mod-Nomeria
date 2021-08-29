@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#i#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "nomeriamod:mercure"
+        },
+		"i": {
+            "item": "minecraft:dye",
+			"data": 1
+        }
+    },
+    "result": {
+        "item": "nomeriamod:menorite",
+        "count": 1
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "nomeriamod:topaze_ladder" },
+        "facing=east":  { "model": "nomeriamod:topaze_ladder", "y": 90 },
+        "facing=south": { "model": "nomeriamod:topaze_ladder", "y": 180 },
+        "facing=west":  { "model": "nomeriamod:topaze_ladder", "y": 270 }
+    }
+}

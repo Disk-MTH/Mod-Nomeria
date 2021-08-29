@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        " # ",
+        " i "
+    ],
+    "key": {
+        "#": {
+            "item": "nomeriamod:mercure"
+        },
+		"i": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "nomeriamod:mercure_sword",
+        "count": 1
+    }
+}

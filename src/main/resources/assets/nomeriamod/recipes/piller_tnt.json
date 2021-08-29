@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#i#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:tnt"
+        },
+		"i": {
+            "item": "nomeriamod:mercure_block"
+        }
+    },
+    "result": {
+        "item": "nomeriamod:piller_tnt",
+        "count": 1
+    }
+}

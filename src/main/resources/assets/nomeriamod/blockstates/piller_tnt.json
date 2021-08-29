@@ -1,0 +1,6 @@
+{
+	"variants": {
+		        "explode=false": { "model":"nomeriamod:piller_tnt" },
+                "explode=true": { "model":"nomeriamod:piller_tnt" }
+	}
+}

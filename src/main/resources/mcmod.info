@@ -1,0 +1,16 @@
+[
+{
+  "modid": "nomeriamod",
+  "name": "Mod Noméria",
+  "description": "Mod du serveur pvp-fation Noméria",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Disk_MTH"],
+  "credits": "Mod créé pour Noméria-MC par Disk_MTH#2401",
+  "logoFile": "assets/nomeriamod/textures/logo/logo_512x.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]

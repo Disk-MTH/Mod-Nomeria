@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#m#",
+        "aia",
+        " i "
+    ],
+    "key": {
+        "#": {
+            "item": "nomeriamod:topaze_block"
+        },
+		"m": {
+            "item": "nomeriamod:menorite_block"
+        },
+		"a": {
+            "item": "nomeriamod:mercure_block"
+        },
+		"i": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "nomeriamod:legendary_pickaxe",
+        "count": 1
+    }
+}

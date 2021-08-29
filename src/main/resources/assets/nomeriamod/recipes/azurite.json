@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "nomeriamod:azurite_block"
+        }
+    },
+    "result": {
+        "item": "nomeriamod:azurite",
+        "count": 9
+    }
+}

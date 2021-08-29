@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        " i ",
+        " i "
+    ],
+    "key": {
+        "#": {
+            "item": "nomeriamod:menorite"
+        },
+		"i": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "nomeriamod:menorite_shovel",
+        "count": 1
+    }
+}

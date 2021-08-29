@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "# #",
+        "   "
+    ],
+    "key": {
+        "#": {
+            "item": "nomeriamod:topaze"
+        }
+    },
+    "result": {
+        "item": "nomeriamod:topaze_helmet",
+        "count": 1
+    }
+}
