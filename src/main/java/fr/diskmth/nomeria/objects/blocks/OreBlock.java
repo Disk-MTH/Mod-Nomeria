@@ -81,7 +81,7 @@ public class OreBlock extends BlockOre implements IHasModel
             }
             if(luck == 100)
             {
-                return ItemsInit.MENORITE;
+                return ItemsInit.MENORITE_FRAGMENT;
             }
 
             return Items.AIR;

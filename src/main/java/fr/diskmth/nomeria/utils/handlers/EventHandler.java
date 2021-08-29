@@ -1,25 +1,27 @@
 package fr.diskmth.nomeria.utils.handlers;
 
 import fr.diskmth.nomeria.client.gui.GuiCustomMainMenu;
-import fr.diskmth.nomeria.init.ItemsInit;
 import fr.diskmth.nomeria.objects.blocks.TopazeLadderBlock;
 import fr.diskmth.nomeria.objects.items.StickItem;
-import fr.diskmth.nomeria.objects.items.TopazeBowItem;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@EventBusSubscriber
 public class EventHandler
 {
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public static void onOpenGui(GuiOpenEvent event)
     {
         if(event.getGui() != null && event.getGui().getClass() == GuiMainMenu.class)
@@ -29,19 +31,7 @@ public class EventHandler
     }
 
     @SubscribeEvent
-    public static void onZoom(FOVUpdateEvent event)
-    {
-        if(event.getEntity().getActiveItemStack() != null)
-        {
-            if(event.getEntity().getActiveItemStack().getItem() == ItemsInit.TOPAZE_BOW)
-            {
-                event.setNewfov(event.getFov() * ((TopazeBowItem)event.getEntity().getActiveItemStack().getItem()).getZoom(event.getEntity()));
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onPlayerTick(LivingEvent.LivingUpdateEvent event)
+    public static void onPlayerTick(LivingEvent.LivingUpdateEvent event)
     {
         if(event.getEntityLiving() instanceof EntityPlayer)
         {
@@ -65,7 +55,7 @@ public class EventHandler
     }
 
     @SubscribeEvent
-    public void onAnvilUpdate(AnvilUpdateEvent event)
+    public static void onAnvilUpdate(AnvilUpdateEvent event)
     {
         if((event.getLeft().getItem() instanceof StickItem) && (event.getRight().getItem() instanceof ItemEnchantedBook))
         {

@@ -55,6 +55,7 @@ public class ItemsInit
     public static ItemArmor MERCURE_LEGGING = new ArmorItem("mercure_legging", ToolMaterialsInit.MERCURE_ARMOR, 2, EntityEquipmentSlot.LEGS);
     public static ItemArmor MERCURE_BOOTS = new ArmorItem("mercure_boots", ToolMaterialsInit.MERCURE_ARMOR, 1, EntityEquipmentSlot.FEET);
     // menorite
+    public static Item MENORITE_FRAGMENT = new BasicItem("menorite_fragment");
     public static Item MENORITE = new BasicItem("menorite");
     public static ItemSword MENORITE_SWORD = new SwordItem("menorite_sword", ToolMaterialsInit.MENORITE_SWORD);
     public static ItemPickaxe MENORITE_PICKAXE = new PickaxeItem("menorite_pickaxe", ToolMaterialsInit.MENORITE_TOOL);

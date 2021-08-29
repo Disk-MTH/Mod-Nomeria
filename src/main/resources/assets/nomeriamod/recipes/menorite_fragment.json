@@ -2,16 +2,20 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         "###",
-        "###",
+        "#i#",
         "###"
     ],
     "key": {
         "#": {
-            "item": "nomeriamod:menorite_fragment"
+            "item": "nomeriamod:mercure_block"
+        },
+		"i": {
+            "item": "minecraft:dye",
+			"data": 1
         }
     },
     "result": {
-        "item": "nomeriamod:menorite",
+        "item": "nomeriamod:menorite_fragment",
         "count": 1
     }
 }

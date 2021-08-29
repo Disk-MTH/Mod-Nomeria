@@ -45,6 +45,7 @@ item.mercure_boots.name=§8Mercure boots
 //menorite
 tile.menorite_block.name=§4Menorite block
 
+item.menorite.name=§4Menorite Fragment
 item.menorite.name=§4Menorite
 item.menorite_sword.name=§4Menorite sword
 item.menorite_pickaxe.name=§4Menorite pickaxe

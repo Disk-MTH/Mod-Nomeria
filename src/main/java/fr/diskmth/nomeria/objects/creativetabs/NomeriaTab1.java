@@ -76,6 +76,7 @@ public class NomeriaTab1 extends CreativeTabs
         list.add(new ItemStack(ItemsInit.MERCURE_LEGGING));
         list.add(new ItemStack(ItemsInit.MERCURE_BOOTS));
         // menorite
+        list.add(new ItemStack(ItemsInit.MENORITE_FRAGMENT));
         list.add(new ItemStack(ItemsInit.MENORITE));
         list.add(new ItemStack(BlocksInit.MENORITE_BLOCK));
         list.add(new ItemStack(ItemsInit.MENORITE_SWORD));

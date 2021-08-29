@@ -10,7 +10,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 public class RendersInit
 {
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public static void registerEntityRenders()
+    public static void registerRenders()
     {
         RenderingRegistry.registerEntityRenderingHandler(EntityPillerTNTPrimed.class, new IRenderFactory()
         {

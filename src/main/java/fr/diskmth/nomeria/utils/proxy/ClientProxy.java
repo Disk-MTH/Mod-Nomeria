@@ -10,7 +10,6 @@ public class ClientProxy extends CommonProxy
     public void registerItemRenderer(Item item, int meta)
     {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), "inventory"));
-        // MinecraftForge.EVENT_BUS.register(new GuiRadar());
     }
 
     @Override

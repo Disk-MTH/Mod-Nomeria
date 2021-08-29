@@ -6,7 +6,6 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
-		classpath 'net.sf.proguard:proguard-gradle:6.2.2'
     }
 }
         
@@ -17,7 +16,7 @@ apply plugin: 'maven-publish'
 
 version = '1.0'
 group = 'fr.diskmth.nomeria' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'Mod Noméria'
+archivesBaseName = 'Mod Nomeria'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -120,28 +119,3 @@ sourceSets {
     main { output.resourcesDir = output.classesDir }
 }
 }
-
-task obfJar(type: proguard.gradle.ProGuardTask, dependsOn: reobf) {
-   inputs.file jar.archivePath
-   ext {
-       outDir = file("${buildDir}/proguard")
-       obfuscatedJar = "${outDir}/${jar.baseName}-${jar.version}.jar"
-   }
-   outDir.mkdirs()
- 
-   injars jar.archivePath
-   outjars obfuscatedJar
-   libraryjars configurations.compile
-   configuration 'proguard.pro'
-}
- 
-task obfOutput(type: Jar, dependsOn: obfJar) {
-   appendix = 'obf'
-   from zipTree(obfJar.obfuscatedJar)
-}
- 
-artifacts {
-   archives obfOutput
-}
- 
-build.dependsOn obfJar, obfOutput

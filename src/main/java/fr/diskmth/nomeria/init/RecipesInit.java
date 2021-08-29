@@ -36,7 +36,7 @@ public class RecipesInit
         }
         if(luck == 100)
         {
-            return new ItemStack(ItemsInit.MENORITE, quantity);
+            return new ItemStack(ItemsInit.MENORITE_FRAGMENT, quantity);
         }
 
         return new ItemStack(Items.AIR);
