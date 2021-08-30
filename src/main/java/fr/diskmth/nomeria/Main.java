@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import fr.diskmth.nomeria.utils.References;
 import fr.diskmth.nomeria.utils.handlers.RegistryHandler;
 import fr.diskmth.nomeria.utils.proxy.CommonProxy;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -34,15 +33,7 @@ public class Main
 
     @EventHandler
     public static void preInit(FMLPreInitializationEvent e) throws Exception
-    {
-        if(e.getSide().isClient())
-        {
-            if(!Minecraft.getMinecraft().mcDataDir.getPath().contains(".Nomeria"))
-            {
-                throw(new Exception("Mauvais launcher détecté, veuillez passé par le launcher officiel de Noméria"));
-            }
-        }
-        
+    {       
         logger = e.getModLog();
         proxy.preInit();
         proxy.init();
