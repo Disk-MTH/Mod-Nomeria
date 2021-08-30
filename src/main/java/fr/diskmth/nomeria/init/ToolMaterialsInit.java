@@ -30,10 +30,10 @@ public class ToolMaterialsInit
     public static void registerToolMaterials()
     {
         // armor
-        TOPAZE_ARMOR = new EnumHelper().addArmorMaterial("topaze", References.MODID + ":topaze", 150, new int[] {4, 7, 9, 4}, 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 1.0f);
-        AZURITE_ARMOR = new EnumHelper().addArmorMaterial("azurite", References.MODID + ":azurite", 187, new int[] {5, 8, 10, 5}, 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 1.0f);
-        MERCURE_ARMOR = new EnumHelper().addArmorMaterial("mercure", References.MODID + ":mercure", 235, new int[] {6, 9, 11, 6}, 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 1.0f);
-        MENORITE_ARMOR = new EnumHelper().addArmorMaterial("menorite", References.MODID + ":menorite", 440, new int[] {7, 10, 12, 7}, 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0f);
+        TOPAZE_ARMOR = new EnumHelper().addArmorMaterial("topaze", References.MODID + ":topaze", 150, new int[] {3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 1.0f);
+        AZURITE_ARMOR = new EnumHelper().addArmorMaterial("azurite", References.MODID + ":azurite", 187, new int[] {4, 7, 9, 4}, 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 1.0f);
+        MERCURE_ARMOR = new EnumHelper().addArmorMaterial("mercure", References.MODID + ":mercure", 235, new int[] {5, 8, 10, 5}, 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 1.0f);
+        MENORITE_ARMOR = new EnumHelper().addArmorMaterial("menorite", References.MODID + ":menorite", 440, new int[] {6, 9, 11, 6}, 15, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0f);
         // tools
         TOPAZE_TOOL = new EnumHelper().addToolMaterial("topaze_tool", 4, 1951, 12.0f, 1.0f, 15);
         AZURITE_TOOL = new EnumHelper().addToolMaterial("azurite_tool", 5, 2439, 14.0f, 1.0f, 15);
