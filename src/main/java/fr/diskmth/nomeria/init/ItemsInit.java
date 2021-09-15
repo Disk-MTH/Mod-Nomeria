@@ -69,4 +69,7 @@ public class ItemsInit
     public static Item LEGENDARY_PICKAXE = new LengendaryPickaxeItem();
     public static Item HEAL_STICK = new StickItem("heal_stick", 5);
     public static Item LOGO = new BasicItem("logo");
+    public static Item VOTE_KEY = new BasicItem("vote_key");
+    public static Item RARE_KEY = new BasicItem("rare_key");
+    public static Item SUPREM_KEY = new BasicItem("suprem_key");
 }

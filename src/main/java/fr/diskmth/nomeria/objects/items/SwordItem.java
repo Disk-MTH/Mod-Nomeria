@@ -3,6 +3,7 @@ package fr.diskmth.nomeria.objects.items;
 import fr.diskmth.nomeria.Main;
 import fr.diskmth.nomeria.init.ItemsInit;
 import fr.diskmth.nomeria.utils.interfaces.IHasModel;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 

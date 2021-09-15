@@ -92,5 +92,8 @@ public class NomeriaTab1 extends CreativeTabs
         list.add(new ItemStack(ItemsInit.HEAL_STICK));
         list.add(new ItemStack(BlocksInit.PILLER_TNT));
         list.add(new ItemStack(BlocksInit.RANDOM_ORE));
+        list.add(new ItemStack(ItemsInit.VOTE_KEY));
+        list.add(new ItemStack(ItemsInit.RARE_KEY));
+        list.add(new ItemStack(ItemsInit.SUPREM_KEY));
     }
 }

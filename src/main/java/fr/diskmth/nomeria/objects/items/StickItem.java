@@ -12,7 +12,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class StickItem extends Item implements IHasModel
 {
@@ -29,7 +28,7 @@ public class StickItem extends Item implements IHasModel
         ItemsInit.ITEMS.add(this);
     }
 
-    @SubscribeEvent
+    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         if(typeOfstick.contains("heal"))

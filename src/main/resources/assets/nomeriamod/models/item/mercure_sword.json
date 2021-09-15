@@ -1,6 +1,14 @@
 {
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "nomeriamod:items/mercure_sword"
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "items/mercure_sword"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "item/mercure_sword_blocking"
     }
+  ]
 }

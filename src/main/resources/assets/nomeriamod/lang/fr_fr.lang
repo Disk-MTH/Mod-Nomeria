@@ -62,6 +62,9 @@ item.legendary_pickaxe.name=§ePioche légendaire
 item.heal_stick.name=§4Sceptre de soin
 tile.piller_tnt.name=§8TNT Pilleur
 tile.random_ore.name=§6Minerai aléatoire
+item.vote_key.name=§5Clé de vote
+item.rare_key.name=§6Clé rare
+item.suprem_key.name=§4Clé suprême
 item.logo.name=Logo
 
 //menu

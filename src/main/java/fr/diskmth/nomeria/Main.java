@@ -1,5 +1,7 @@
 package fr.diskmth.nomeria;
 
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Logger;
 
 import fr.diskmth.nomeria.utils.References;
@@ -39,7 +41,7 @@ public class Main
         {
             if(!Minecraft.getMinecraft().mcDataDir.getPath().contains(".Nomeria"))
             {
-                throw(new Exception("Mauvais launcher détecté, veuillez passé par le launcher officiel de Noméria"));
+                //throw(new Exception("Mauvais launcher détecté, veuillez passé par le launcher officiel de Noméria"));
             }
         }
         

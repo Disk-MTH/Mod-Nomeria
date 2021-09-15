@@ -62,6 +62,9 @@ item.legendary_pickaxe.name=§eLegendary pickaxe
 item.heal_stick.name=§4Heal stick
 tile.piller_tnt.name=§8Piller TNT
 tile.random_ore.name=§6Random ore
+item.vote_key.name=§5Vote key
+item.rare_key.name=§6Rare key
+item.suprem_key.name=§4Suprem key
 item.logo.name=Logo
 
 //menu

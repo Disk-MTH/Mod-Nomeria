@@ -1,6 +1,14 @@
 {
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "nomeriamod:items/azurite_sword"
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "items/azurite_sword"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "item/azurite_sword_blocking"
     }
+  ]
 }
