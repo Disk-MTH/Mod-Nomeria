@@ -1,5 +1,8 @@
 package fr.diskmth.nomeria.utils.handlers;
 
+import fr.diskmth.nomeria.init.NetworkInit;
+import fr.diskmth.nomeria.network.CancelIsBlockingPacket;
+import fr.diskmth.nomeria.network.SetIsBlockingPacket;
 import fr.diskmth.nomeria.objects.blocks.TopazeLadderBlock;
 import fr.diskmth.nomeria.objects.items.StickItem;
 import fr.diskmth.nomeria.objects.items.SwordItem;
@@ -11,14 +14,18 @@ import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
+import net.minecraft.item.IItemPropertyGetter;
+import net.minecraft.item.ItemEnchantedBook;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -36,7 +43,11 @@ import javax.annotation.Nullable;
 public class EventHandler
 {
     public static boolean isBlocking = false;
+    public static boolean isEnablePacketSend = false;
+    public static boolean isBlockingFOVUpdate = false;
+    public static double playerSpeed;
 
+    @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onOpenGui(GuiOpenEvent event)
     {
@@ -88,33 +99,74 @@ public class EventHandler
     @SideOnly(Side.CLIENT)
     public void onPlayerTickClient(TickEvent.PlayerTickEvent event)
     {
+        if((Minecraft.getMinecraft()).gameSettings.keyBindUseItem.isKeyDown() && OldPvpUtils.getItemType(event.player.getHeldItem(EnumHand.MAIN_HAND)) == OldPvpUtils.itemType.SWORD && !isEnablePacketSend)
+        {
+            NetworkInit.NETWORK.sendToServer(new SetIsBlockingPacket(""));
+            isEnablePacketSend = true;
+            isBlockingFOVUpdate = true;
+        }
+        else if(!(Minecraft.getMinecraft()).gameSettings.keyBindUseItem.isKeyDown() && OldPvpUtils.getItemType(event.player.getHeldItem(EnumHand.MAIN_HAND)) == OldPvpUtils.itemType.SWORD && isEnablePacketSend)
+        {
+            NetworkInit.NETWORK.sendToServer(new CancelIsBlockingPacket(""));
+            isEnablePacketSend = false;
+            isBlockingFOVUpdate = false;
+        }
+
+        if(OldPvpUtils.getItemType(event.player.getHeldItem(EnumHand.MAIN_HAND)) == OldPvpUtils.itemType.SWORD && isEnablePacketSend)
+        {
+            event.player.getHeldItem(EnumHand.MAIN_HAND).getItem().addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter()
+            {
+                @Override
+                public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
+                {
+                    return OldPvpUtils.booleanToInt(isEnablePacketSend);
+                }
+
+                public float call(ItemStack itemStack, @Nullable World world, @Nullable EntityLiving entityLiving)
+                {
+                    return EventHandler.isEnablePacketSend ? 1.0F : 0.0F;
+                }
+            });
+        }
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onFOVUpdateByHitBlock(FOVUpdateEvent event)
+    {
+        if(playerSpeed == event.getEntity().getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getBaseValue())
+        {
+           event.setNewfov(1.0F);
+        }
+    }
+
+    @SubscribeEvent
+    public void playerTickCommon(TickEvent.PlayerTickEvent event)
+    {
+        event.player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(1024.0D);
+
         if(!event.player.getEntityWorld().isRemote)
         {
-            if(((Minecraft.getMinecraft()).gameSettings.keyBindUseItem.isKeyDown() && OldPvpUtils.getItemType(event.player.getHeldItem(EnumHand.MAIN_HAND)) == OldPvpUtils.itemType.SWORD))
+            if(isBlocking)
             {
-                isBlocking = true;
+                event.player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(event.player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getBaseValue() / 6);
+                playerSpeed = event.player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getBaseValue();
             }
+        }
+    }
 
-            else
+    @SubscribeEvent
+    public void onEntityGotHurt(LivingHurtEvent event)
+    {
+        if(!event.getEntityLiving().getEntityWorld().isRemote)
+        {
+            if(event.getEntity() instanceof EntityPlayer && isBlocking && OldPvpUtils.canBeBlocked(event.getSource()))
             {
-                isBlocking = false;
+                event.setAmount(event.getAmount() * 0.66F);
             }
-
-            if(OldPvpUtils.getItemType(event.player.getHeldItem(EnumHand.MAIN_HAND)) == OldPvpUtils.itemType.SWORD)
+            else if(event.getSource().getTrueSource() instanceof EntityPlayer && OldPvpUtils.getItemType(((EntityPlayer)event.getSource().getTrueSource()).getHeldItemMainhand()) == OldPvpUtils.itemType.AXE)
             {
-                event.player.getHeldItem(EnumHand.MAIN_HAND).getItem().addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter()
-                {
-                    @Override
-                    public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
-                    {
-                        return OldPvpUtils.convertIsBlocking(isBlocking);
-                    }
-
-                    public float call(ItemStack itemStack, @Nullable World world, @Nullable EntityLiving entityLiving)
-                    {
-                        return EventHandler.isBlocking ? 1.0F : 0.0F;
-                    }
-                });
+                event.setAmount(OldPvpUtils.getOldDamages(((EntityPlayer)event.getSource().getTrueSource()).getHeldItemMainhand()));
             }
         }
     }
@@ -122,40 +174,13 @@ public class EventHandler
     @SubscribeEvent
     public void onPlayerAttack(AttackEntityEvent event)
     {
-        if((event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemSword || event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof SwordItem) && (event.getTarget() instanceof EntityLiving || event.getTarget() instanceof EntityPlayer))
+        if(!event.getEntityPlayer().getEntityWorld().isRemote)
         {
-            event.setCanceled(true);
-            event.getTarget().attackEntityFrom(DamageSource.causePlayerDamage(event.getEntityPlayer()), ((ItemSword)event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem()).getAttackDamage() + 4);
-        }
-    }
-
-    @SubscribeEvent
-    public void onEntityGotHurt(LivingHurtEvent event)
-    {
-        if(!event.getEntityLiving().getEntityWorld().isRemote && event.getEntity() instanceof EntityPlayer && isBlocking && OldPvpUtils.canBeBlocked(event.getSource()))
-        {
-            //event.setAmount(event.getAmount() / 2.0F);
-            event.setCanceled(true);
-        }
-        else if(event.getSource().getTrueSource() instanceof EntityPlayer && OldPvpUtils.getItemType(((EntityPlayer)event.getSource().getTrueSource()).getHeldItemMainhand()) == OldPvpUtils.itemType.AXE)
-        {
-            event.setAmount(OldPvpUtils.getOldDamages(((EntityPlayer)event.getSource().getTrueSource()).getHeldItemMainhand()));
-        }
-    }
-
-    @SubscribeEvent
-    public void onPlayerTickServer(TickEvent.PlayerTickEvent event)
-    {
-        if(!event.player.getEntityWorld().isRemote)
-        {
-            IAttributeInstance attackSpeed = event.player.getAttributeMap().getAttributeInstanceByName("generic.attackSpeed");
-
-            if(attackSpeed != null && attackSpeed.getBaseValue() != 1024.0D)
+            if((event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemSword || event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof SwordItem) && (event.getTarget() instanceof EntityLiving || event.getTarget() instanceof EntityPlayer))
             {
-                attackSpeed.setBaseValue(1024.0D);
+                event.setCanceled(true);
+                event.getTarget().attackEntityFrom(DamageSource.causePlayerDamage(event.getEntityPlayer()), ((ItemSword)event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem()).getAttackDamage() + 4);
             }
-
-            OldPvpUtils.removeAllCooldowns(event.player);
         }
     }
 }

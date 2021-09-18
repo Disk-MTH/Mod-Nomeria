@@ -1,9 +1,5 @@
 package fr.diskmth.nomeria;
 
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.apache.logging.log4j.Logger;
-
 import fr.diskmth.nomeria.utils.References;
 import fr.diskmth.nomeria.utils.handlers.RegistryHandler;
 import fr.diskmth.nomeria.utils.proxy.CommonProxy;
@@ -16,11 +12,11 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = References.MODID, name = References.NAME, version = References.VERSION)
 public class Main
 {
-
     @Instance
     public static Main instance;
 
@@ -41,7 +37,7 @@ public class Main
         {
             if(!Minecraft.getMinecraft().mcDataDir.getPath().contains(".Nomeria"))
             {
-                //throw(new Exception("Mauvais launcher détecté, veuillez passé par le launcher officiel de Noméria"));
+                throw(new Exception("Mauvais launcher détecté, veuillez passé par le launcher officiel de Noméria"));
             }
         }
         

@@ -1,11 +1,6 @@
 package fr.diskmth.nomeria.utils.handlers;
 
-import fr.diskmth.nomeria.init.BlocksInit;
-import fr.diskmth.nomeria.init.CreativeTabsInit;
-import fr.diskmth.nomeria.init.EntityInit;
-import fr.diskmth.nomeria.init.ItemsInit;
-import fr.diskmth.nomeria.init.RecipesInit;
-import fr.diskmth.nomeria.init.ToolMaterialsInit;
+import fr.diskmth.nomeria.init.*;
 import fr.diskmth.nomeria.utils.interfaces.IHasModel;
 import fr.diskmth.nomeria.world.generation.WorldGenOres;
 import net.minecraft.block.Block;
@@ -20,7 +15,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @EventBusSubscriber
 public class RegistryHandler
 {
-
     @SubscribeEvent
     public static void onItemRegister(RegistryEvent.Register<Item> event)
     {
@@ -69,6 +63,6 @@ public class RegistryHandler
 
     public static void postInitRegistries()
     {
-
+        NetworkInit.registerNetwork();
     }
 }
